@@ -43,7 +43,7 @@ public String addBook() throws Exception{
 	String result = null;
 	String sql = "insert into tb_books(name, price, bookCount, author) values('天龙八部', 150.33, 5, '金庸')";
 	try{
-		result = add(sql);
+		result = doUpdate(sql);
 	}catch(Exception e){
 		e.printStackTrace();
 	}
@@ -68,7 +68,7 @@ public String updateBook(){
 	String result = null;
 	String sql = "update tb_books set name='神雕侠侣', price=102.01, bookCount=2, author='金庸111' where id=12";
 	try{
-		result = add(sql);
+		result = doUpdate(sql);
 	}catch(Exception e){
 		e.printStackTrace();
 	}
@@ -80,7 +80,7 @@ public String deleteBook(){
 	String result = null;
 	String sql = "delete from tb_books where id=13";
 	try{
-		result = add(sql);
+		result = doUpdate(sql);
 	}catch(Exception e){
 		e.printStackTrace();
 	}

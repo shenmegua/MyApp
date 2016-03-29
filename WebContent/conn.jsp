@@ -74,7 +74,7 @@ public List<Map<String, Object>> query(String sql) throws Exception{
 	return rowList;
 }
 // 新增
-public String add(String sql) throws Exception{
+public String doUpdate(String sql) throws Exception{
 	boolean flag= false;
 	String msg = "";
 	if(null != sql && !"".equals(sql)){
