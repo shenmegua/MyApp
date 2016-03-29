@@ -32,6 +32,7 @@
 	</form>
 <script type="text/javascript" src="jquery.min.js"></script>
 	<script type='text/javascript'>
+		<!--js获取form表单数据，转为json，提交到后台，转为jsonObject处理-->
 		$(function(){
 		   $('#sub_btn').on('click', function(evt){
 			   $.ajax({
