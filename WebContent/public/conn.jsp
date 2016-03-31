@@ -1,3 +1,4 @@
+<%@page import="org.json.JSONArray"%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 
 <%@page import="java.sql.DriverManager"%>
@@ -32,7 +33,7 @@ public Connection getConn(){
 }
 
 // 查询
-public List<Map<String, Object>> query(String sql) throws Exception{
+public List<Map<String, Object>> query(String sql){
 	List<Map<String, Object>> rowList = null;
 	if(null != sql && !"".equals(sql)){
 		Connection conn = null;
@@ -60,21 +61,25 @@ public List<Map<String, Object>> query(String sql) throws Exception{
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
-			if(null != ps){
-				ps.close();
-			}
-			if(null != rs){
-				rs.close();
-			}
-			if(null != conn){
-				conn.close();
+			try{
+				if(null != ps){
+					ps.close();
+				}
+				if(null != rs){
+					rs.close();
+				}
+				if(null != conn){
+					conn.close();
+				}
+			}catch(Exception e){
+				e.printStackTrace();
 			}
 		} 
 	}
 	return rowList;
 }
 // 新增
-public String doUpdate(String sql) throws Exception{
+public String doUpdate(String sql){
 	boolean flag= false;
 	String msg = "";
 	if(null != sql && !"".equals(sql)){
@@ -92,11 +97,15 @@ public String doUpdate(String sql) throws Exception{
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
-			if(null != ps){
-				ps.close();
-			}
-			if(null != conn){
-				conn.close();
+			try{
+				if(null != ps){
+					ps.close();
+				}
+				if(null != conn){
+					conn.close();
+				}
+			}catch(Exception e){
+				e.printStackTrace();
 			}
 		}
 	}
@@ -106,4 +115,10 @@ public String doUpdate(String sql) throws Exception{
 public void logs(){
 	
 }
+%>
+
+<%
+/* String sql= "select * from tb_books";
+JSONArray jsonArr = new JSONArray(query(sql));
+System.out.println(jsonArr); */
 %>
