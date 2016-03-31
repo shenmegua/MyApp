@@ -1,7 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="application/json; charset=UTF-8"%>
-<%@ include file="conn.jsp" %>
-<%@page import="java.sql.SQLException"%>
-<%@page import="java.sql.Statement"%>
+<%@ include file="../public/conn.jsp" %>
 <%
 // 操作类型 1 新增 2
 request.setCharacterEncoding("UTF-8");
@@ -9,7 +7,7 @@ System.out.print(request.getParameter("jsonForm"));
 out.print("{\"suc\":\"ok\"}");
 
 
-/* int act = getAct(request);
+int act = getAct(request);
 
 switch(act){	
 	case 1:
@@ -23,7 +21,7 @@ switch(act){
 		break;
 	default:
 		out.print("{\"error\":\"操作类型错误！\"}");
-} */
+}
 %>
 
 <%!
@@ -39,51 +37,26 @@ public String getParams(HttpServletRequest req, String key){
 }
 
 // 增加图书
-public String addBook() throws Exception{
-	String result = null;
+public String addBook(){
 	String sql = "insert into tb_books(name, price, bookCount, author) values('天龙八部', 150.33, 5, '金庸')";
-	try{
-		result = doUpdate(sql);
-	}catch(Exception e){
-		e.printStackTrace();
-	}
-	return result;
+	return doUpdate(sql);
 }
 
 // 查询图书
 public List<Map<String, Object>> queryBooks(){
-	List<Map<String, Object>> result = null;
 	String sql = "select * from tb_books";
-	try{
-		result = query(sql);
-	}catch(Exception e){
-		e.printStackTrace();
-	}
-	System.out.print(result.toString());
-	return result;
+	return query(sql);
 }
 
 // 修改图书
 public String updateBook(){
-	String result = null;
 	String sql = "update tb_books set name='神雕侠侣', price=102.01, bookCount=2, author='金庸111' where id=12";
-	try{
-		result = doUpdate(sql);
-	}catch(Exception e){
-		e.printStackTrace();
-	}
-	return result;			
+	return doUpdate(sql);			
 }
 
 // 删除图书
 public String deleteBook(){
-	String result = null;
 	String sql = "delete from tb_books where id=13";
-	try{
-		result = doUpdate(sql);
-	}catch(Exception e){
-		e.printStackTrace();
-	}
-	return result;
+	return doUpdate(sql);
 }
 %>
